@@ -8,6 +8,15 @@ using TodoApp.Models.Config;
 using TodoApp.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+    // 1. Adicionar o serviço de CORS (Permitir o React)
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowReactApp",
+        builder => builder
+            .AllowAnyOrigin()   // Deixa entrar toda a gente (para facilitar no trabalho da escola)
+            .AllowAnyMethod()   // Deixa fazer GET, POST, DELETE...
+            .AllowAnyHeader()); // Deixa enviar tokens e json
+});
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ??
@@ -103,5 +112,6 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
-
+// 2. Ativar a permissão que criámos em cima
+app.UseCors("AllowReactApp");
 app.Run();

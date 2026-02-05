@@ -66,21 +66,23 @@ namespace TodoApp.Controllers.api
 
             return Ok();
         }
-        [HttpPost("register")]
+     [HttpPost("register")]
 public async Task<ActionResult> Register([FromBody] LoginModel model)
 {
-    // 1. Criar um utilizador novo com o Email que escrevermos
-    var user = new IdentityUser { UserName = model.Email, Email = model.Email };
+    var user = new IdentityUser 
+    { 
+        UserName = model.Email, 
+        Email = model.Email,
+        EmailConfirmed = true // <--- O TRUQUE: Obriga o sistema a aceitar o login!
+    };
     
-    // 2. Tentar gravar na base de dados com a Password
     var result = await _userManager.CreateAsync(user, model.Password);
 
     if (result.Succeeded)
     {
-        return Ok("Utilizador criado com sucesso! Podes fazer login.");
+        return Ok("Conta criada e ativada com sucesso!");
     }
     
-    // Se der erro (ex: password fraca), mostra o erro
     return BadRequest(result.Errors);
 }
     }

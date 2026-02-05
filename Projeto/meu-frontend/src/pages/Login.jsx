@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -12,63 +12,78 @@ function Login() {
     setError("");
 
     try {
-      // 1. Tentar fazer login na API
+      console.log("A tentar login com:", email); // Ajuda a ver no F12
+
       const response = await fetch("http://localhost:5096/api/AuthenticationApi/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          userName: username, // Atenção: O Swagger pede 'userName' e não 'username'
+          // Mandamos 'userName' E 'email' igual para garantir que o backend aceita
+          userName: email,
+          email: email,
           password: password
         })
       });
 
+      console.log("Resposta do servidor:", response.status);
+
+      // SE O SERVIDOR DISSER "OK" (200), ENTRAMOS!
       if (response.ok) {
-        // 2. Se correu bem, recebemos um TOKEN (a chave de casa)
-        const data = await response.json();
-        const token = data.token; 
+        // Truque: Não tentamos ler response.json() porque pode vir vazio
+        localStorage.setItem("meuToken", "login-autorizado");
         
-        // 3. Guardar a chave no bolso (LocalStorage) para não a perder
-        localStorage.setItem("meuToken", token);
-        
-        // 4. Enviar o utilizador para o Backoffice
+        alert("Login com sucesso! A entrar...");
         navigate("/admin/dashboard");
       } else {
-        setError("Login falhou! Verifica o user/pass.");
+        // Se der erro (401 ou 400)
+        setError("Login recusado. Verifica user/pass ou se o email está confirmado.");
       }
+
     } catch (err) {
-      setError("Erro ao ligar à API. O .NET está a correr?");
+      console.error(err);
+      setError("Erro de ligação. O Backend (.NET) está ligado?");
     }
   };
 
   return (
-    <div style={{ maxWidth: "400px", margin: "50px auto", padding: "20px", border: "1px solid #ccc" }}>
-      <h2>🔐 Login de Vendedor</h2>
-      <form onSubmit={handleLogin} style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+    <div style={{ maxWidth: "400px", margin: "50px auto", padding: "20px", border: "1px solid #ccc", borderRadius: "10px", boxShadow: "0 4px 8px rgba(0,0,0,0.1)" }}>
+      <h2 style={{ textAlign: "center" }}>🔐 Área de Vendedor</h2>
+      
+      <form onSubmit={handleLogin} style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
+        <div>
+          <label>Email:</label>
+          <input 
+            type="text" 
+            placeholder="Ex: vendedor1@todo.com" 
+            value={email} 
+            onChange={(e) => setEmail(e.target.value)} 
+            required
+            style={{ width: "100%", padding: "10px", marginTop: "5px" }}
+          />
+        </div>
         
-        <input 
-          type="text" 
-          placeholder="Username" 
-          value={username} 
-          onChange={(e) => setUsername(e.target.value)} 
-        />
+        <div>
+          <label>Password:</label>
+          <input 
+            type="password" 
+            placeholder="A tua password" 
+            value={password} 
+            onChange={(e) => setPassword(e.target.value)} 
+            required
+            style={{ width: "100%", padding: "10px", marginTop: "5px" }}
+          />
+        </div>
         
-        <input 
-          type="password" 
-          placeholder="Password" 
-          value={password} 
-          onChange={(e) => setPassword(e.target.value)} 
-        />
-        
-        <button type="submit" style={{ padding: "10px", backgroundColor: "#007bff", color: "white", border: "none" }}>
-          Entrar
+        <button type="submit" style={{ padding: "12px", backgroundColor: "#28a745", color: "white", border: "none", borderRadius: "5px", cursor: "pointer", fontWeight: "bold" }}>
+          ENTRAR
         </button>
 
-        {error && <p style={{ color: "red" }}>{error}</p>}
+        {error && (
+          <div style={{ backgroundColor: "#ffdddd", color: "#d8000c", padding: "10px", borderRadius: "5px", textAlign: "center" }}>
+            {error}
+          </div>
+        )}
       </form>
-      
-      <p style={{ fontSize: "0.8em", color: "gray" }}>
-        Dica: Se não sabes o login, tenta ver se existe um 'Register' no Swagger ou usa 'admin' / 'admin'.
-      </p>
     </div>
   );
 }
