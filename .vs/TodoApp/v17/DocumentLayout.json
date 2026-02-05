@@ -1,0 +1,217 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\joao.rodrigues.silva\\source\\repos\\TodoApp\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5A68BAD3-61C7-44B8-B1BE-53307B161252}|TodoApp\\TodoApp.csproj|c:\\users\\joao.rodrigues.silva\\source\\repos\\todoapp\\todoapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5A68BAD3-61C7-44B8-B1BE-53307B161252}|TodoApp\\TodoApp.csproj|solutionrelative:todoapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5A68BAD3-61C7-44B8-B1BE-53307B161252}|TodoApp\\TodoApp.csproj|c:\\users\\joao.rodrigues.silva\\source\\repos\\todoapp\\todoapp\\models\\dtos\\loginmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5A68BAD3-61C7-44B8-B1BE-53307B161252}|TodoApp\\TodoApp.csproj|solutionrelative:todoapp\\models\\dtos\\loginmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5A68BAD3-61C7-44B8-B1BE-53307B161252}|TodoApp\\TodoApp.csproj|c:\\users\\joao.rodrigues.silva\\source\\repos\\todoapp\\todoapp\\areas\\identity\\pages\\account\\registerconfirmation.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5A68BAD3-61C7-44B8-B1BE-53307B161252}|TodoApp\\TodoApp.csproj|solutionrelative:todoapp\\areas\\identity\\pages\\account\\registerconfirmation.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5A68BAD3-61C7-44B8-B1BE-53307B161252}|TodoApp\\TodoApp.csproj|c:\\users\\joao.rodrigues.silva\\source\\repos\\todoapp\\todoapp\\controllers\\api\\authenticationapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5A68BAD3-61C7-44B8-B1BE-53307B161252}|TodoApp\\TodoApp.csproj|solutionrelative:todoapp\\controllers\\api\\authenticationapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5A68BAD3-61C7-44B8-B1BE-53307B161252}|TodoApp\\TodoApp.csproj|c:\\users\\joao.rodrigues.silva\\source\\repos\\todoapp\\todoapp\\todoapp.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{5A68BAD3-61C7-44B8-B1BE-53307B161252}|TodoApp\\TodoApp.csproj|solutionrelative:todoapp\\todoapp.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5A68BAD3-61C7-44B8-B1BE-53307B161252}|TodoApp\\TodoApp.csproj|c:\\users\\joao.rodrigues.silva\\source\\repos\\todoapp\\todoapp\\controllers\\api\\todoitemapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5A68BAD3-61C7-44B8-B1BE-53307B161252}|TodoApp\\TodoApp.csproj|solutionrelative:todoapp\\controllers\\api\\todoitemapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5A68BAD3-61C7-44B8-B1BE-53307B161252}|TodoApp\\TodoApp.csproj|c:\\users\\joao.rodrigues.silva\\source\\repos\\todoapp\\todoapp\\models\\dtos\\whoamimodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5A68BAD3-61C7-44B8-B1BE-53307B161252}|TodoApp\\TodoApp.csproj|solutionrelative:todoapp\\models\\dtos\\whoamimodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5A68BAD3-61C7-44B8-B1BE-53307B161252}|TodoApp\\TodoApp.csproj|c:\\users\\joao.rodrigues.silva\\source\\repos\\todoapp\\todoapp\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{5A68BAD3-61C7-44B8-B1BE-53307B161252}|TodoApp\\TodoApp.csproj|solutionrelative:todoapp\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5A68BAD3-61C7-44B8-B1BE-53307B161252}|TodoApp\\TodoApp.csproj|c:\\users\\joao.rodrigues.silva\\source\\repos\\todoapp\\todoapp\\models\\config\\smtpoptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5A68BAD3-61C7-44B8-B1BE-53307B161252}|TodoApp\\TodoApp.csproj|solutionrelative:todoapp\\models\\config\\smtpoptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5A68BAD3-61C7-44B8-B1BE-53307B161252}|TodoApp\\TodoApp.csproj|c:\\users\\joao.rodrigues.silva\\source\\repos\\todoapp\\todoapp\\services\\emailsender.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5A68BAD3-61C7-44B8-B1BE-53307B161252}|TodoApp\\TodoApp.csproj|solutionrelative:todoapp\\services\\emailsender.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5A68BAD3-61C7-44B8-B1BE-53307B161252}|TodoApp\\TodoApp.csproj|c:\\users\\joao.rodrigues.silva\\source\\repos\\todoapp\\todoapp\\areas\\identity\\pages\\account\\register.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5A68BAD3-61C7-44B8-B1BE-53307B161252}|TodoApp\\TodoApp.csproj|solutionrelative:todoapp\\areas\\identity\\pages\\account\\register.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5A68BAD3-61C7-44B8-B1BE-53307B161252}|TodoApp\\TodoApp.csproj|c:\\users\\joao.rodrigues.silva\\source\\repos\\todoapp\\todoapp\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5A68BAD3-61C7-44B8-B1BE-53307B161252}|TodoApp\\TodoApp.csproj|solutionrelative:todoapp\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AuthenticationApiController.cs",
+              "DocumentMoniker": "C:\\Users\\joao.rodrigues.silva\\source\\repos\\TodoApp\\TodoApp\\Controllers\\api\\AuthenticationApiController.cs",
+              "RelativeDocumentMoniker": "TodoApp\\Controllers\\api\\AuthenticationApiController.cs",
+              "ToolTip": "C:\\Users\\joao.rodrigues.silva\\source\\repos\\TodoApp\\TodoApp\\Controllers\\api\\AuthenticationApiController.cs",
+              "RelativeToolTip": "TodoApp\\Controllers\\api\\AuthenticationApiController.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAAwCQAAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-11T11:11:12.328Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "RegisterConfirmation.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\joao.rodrigues.silva\\source\\repos\\TodoApp\\TodoApp\\Areas\\Identity\\Pages\\Account\\RegisterConfirmation.cshtml.cs",
+              "RelativeDocumentMoniker": "TodoApp\\Areas\\Identity\\Pages\\Account\\RegisterConfirmation.cshtml.cs",
+              "ToolTip": "C:\\Users\\joao.rodrigues.silva\\source\\repos\\TodoApp\\TodoApp\\Areas\\Identity\\Pages\\Account\\RegisterConfirmation.cshtml.cs",
+              "RelativeToolTip": "TodoApp\\Areas\\Identity\\Pages\\Account\\RegisterConfirmation.cshtml.cs",
+              "ViewState": "AgIAADgAAAAAAAAAAAAowD4AAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-11T12:39:57.864Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "LoginModel.cs",
+              "DocumentMoniker": "C:\\Users\\joao.rodrigues.silva\\source\\repos\\TodoApp\\TodoApp\\Models\\Dtos\\LoginModel.cs",
+              "RelativeDocumentMoniker": "TodoApp\\Models\\Dtos\\LoginModel.cs",
+              "ToolTip": "C:\\Users\\joao.rodrigues.silva\\source\\repos\\TodoApp\\TodoApp\\Models\\Dtos\\LoginModel.cs",
+              "RelativeToolTip": "TodoApp\\Models\\Dtos\\LoginModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-11T11:53:49.361Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\joao.rodrigues.silva\\source\\repos\\TodoApp\\TodoApp\\Program.cs",
+              "RelativeDocumentMoniker": "TodoApp\\Program.cs",
+              "ToolTip": "C:\\Users\\joao.rodrigues.silva\\source\\repos\\TodoApp\\TodoApp\\Program.cs",
+              "RelativeToolTip": "TodoApp\\Program.cs",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAQwCEAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-11T12:26:24.127Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "TodoApp.csproj",
+              "DocumentMoniker": "C:\\Users\\joao.rodrigues.silva\\source\\repos\\TodoApp\\TodoApp\\TodoApp.csproj",
+              "RelativeDocumentMoniker": "TodoApp\\TodoApp.csproj",
+              "ToolTip": "C:\\Users\\joao.rodrigues.silva\\source\\repos\\TodoApp\\TodoApp\\TodoApp.csproj",
+              "RelativeToolTip": "TodoApp\\TodoApp.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-11-13T10:28:43.412Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "TodoItemApiController.cs",
+              "DocumentMoniker": "C:\\Users\\joao.rodrigues.silva\\source\\repos\\TodoApp\\TodoApp\\Controllers\\api\\TodoItemApiController.cs",
+              "RelativeDocumentMoniker": "TodoApp\\Controllers\\api\\TodoItemApiController.cs",
+              "ToolTip": "C:\\Users\\joao.rodrigues.silva\\source\\repos\\TodoApp\\TodoApp\\Controllers\\api\\TodoItemApiController.cs",
+              "RelativeToolTip": "TodoApp\\Controllers\\api\\TodoItemApiController.cs",
+              "ViewState": "AgIAAHoAAAAAAAAAAAAgwH8AAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-11T11:10:26.491Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "WhoAmIModel.cs",
+              "DocumentMoniker": "C:\\Users\\joao.rodrigues.silva\\source\\repos\\TodoApp\\TodoApp\\Models\\Dtos\\WhoAmIModel.cs",
+              "RelativeDocumentMoniker": "TodoApp\\Models\\Dtos\\WhoAmIModel.cs",
+              "ToolTip": "C:\\Users\\joao.rodrigues.silva\\source\\repos\\TodoApp\\TodoApp\\Models\\Dtos\\WhoAmIModel.cs",
+              "RelativeToolTip": "TodoApp\\Models\\Dtos\\WhoAmIModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-13T09:55:56.449Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\joao.rodrigues.silva\\source\\repos\\TodoApp\\TodoApp\\appsettings.json",
+              "RelativeDocumentMoniker": "TodoApp\\appsettings.json",
+              "ToolTip": "C:\\Users\\joao.rodrigues.silva\\source\\repos\\TodoApp\\TodoApp\\appsettings.json",
+              "RelativeToolTip": "TodoApp\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-11-11T12:37:28.35Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "EmailSender.cs",
+              "DocumentMoniker": "C:\\Users\\joao.rodrigues.silva\\source\\repos\\TodoApp\\TodoApp\\Services\\EmailSender.cs",
+              "RelativeDocumentMoniker": "TodoApp\\Services\\EmailSender.cs",
+              "ToolTip": "C:\\Users\\joao.rodrigues.silva\\source\\repos\\TodoApp\\TodoApp\\Services\\EmailSender.cs",
+              "RelativeToolTip": "TodoApp\\Services\\EmailSender.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAmwA4AAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-11T12:10:08.529Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "SmtpOptions.cs",
+              "DocumentMoniker": "C:\\Users\\joao.rodrigues.silva\\source\\repos\\TodoApp\\TodoApp\\Models\\Config\\SmtpOptions.cs",
+              "RelativeDocumentMoniker": "TodoApp\\Models\\Config\\SmtpOptions.cs",
+              "ToolTip": "C:\\Users\\joao.rodrigues.silva\\source\\repos\\TodoApp\\TodoApp\\Models\\Config\\SmtpOptions.cs",
+              "RelativeToolTip": "TodoApp\\Models\\Config\\SmtpOptions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-11T12:12:21.88Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Register.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\joao.rodrigues.silva\\source\\repos\\TodoApp\\TodoApp\\Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
+              "RelativeDocumentMoniker": "TodoApp\\Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
+              "ToolTip": "C:\\Users\\joao.rodrigues.silva\\source\\repos\\TodoApp\\TodoApp\\Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
+              "RelativeToolTip": "TodoApp\\Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAxwB4AAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-11T12:08:21.894Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\joao.rodrigues.silva\\source\\repos\\TodoApp\\TodoApp\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "TodoApp\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\joao.rodrigues.silva\\source\\repos\\TodoApp\\TodoApp\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "TodoApp\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABkAAABRAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-11T11:18:58.913Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
