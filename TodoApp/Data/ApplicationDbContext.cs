@@ -14,4 +14,6 @@ public class ApplicationDbContext : IdentityDbContext
     
     public DbSet<TodoItem>  TodoItems { get; set; }
     public DbSet<Like> Likes { get; set; }
+    public DbSet<ItemLike> ItemLikes { get; set; }
+    
 }

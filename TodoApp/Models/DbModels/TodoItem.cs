@@ -1,24 +1,27 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace TodoApp.Models.DbModels;
-
-public class TodoItem
+namespace TodoApp.Models.DbModels
 {
-    public  int Id { get; set; }
-    [StringLength(128)]
-    public string Tarefa { get; set; } = string.Empty;
-    public bool Concluida { get; set; }
-    
-    [StringLength(128)]
-    public string UserCriacao { get; set; } = string.Empty;
-    public DateTime DataCriacao { get; set; }
-    public DateTime DataConcluida { get; set; }
-
-    public class Like
+    public class TodoItem
     {
         public int Id { get; set; }
 
-        // Isto serve para sabermos a que produto pertence este Like
-        public int TodoItemId { get; set; } 
+        // Vamos usar "Tarefa" como o Título do Anúncio
+        public string Tarefa { get; set; } 
+
+        public bool Concluida { get; set; } // Se true = Vendido
+        public DateTime DataCriacao { get; set; }
+        public DateTime DataConcluida { get; set; }
+        public string UserCriacao { get; set; }
+
+        // --- NOVOS CAMPOS PARA O MARKETPLACE ---
+        public decimal Preco { get; set; }
+        public string Descricao { get; set; }
+        public string Imagem { get; set; } // Guardamos o URL ou Base64 da imagem
+        
+        // Estatísticas Reais
+        public int Likes { get; set; }
+        public int Views { get; set; }
     }
 }

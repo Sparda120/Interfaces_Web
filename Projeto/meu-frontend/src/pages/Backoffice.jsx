@@ -1,151 +1,155 @@
-import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import './App.css'; 
 
-function Backoffice() {
-  const [produtos, setProdutos] = useState([]);
-  const [novoProduto, setNovoProduto] = useState("");
-  const navigate = useNavigate();
+export default function Marketplace() {
+  const [anuncios, setAnuncios] = useState([]); // Começa vazio, vai buscar à BD
+  const [mostrarFormulario, setMostrarFormulario] = useState(false);
+  const [novoArtigo, setNovoArtigo] = useState({
+    titulo: '',
+    descricao: '',
+    preco: '',
+    imagem: '' // Agora é uma string (URL)
+  });
 
-  // 1. Carregar produtos
-  const carregarProdutos = async () => {
-    try {
-      const resposta = await fetch("http://localhost:5096/api/TodoItemApi");
-      const dados = await resposta.json();
-      setProdutos(dados);
-    } catch (erro) {
-      console.error("Erro de ligação");
-    }
-  };
-
-  // 2. Verificar Login
+  // --- 1. CARREGAR DADOS DO SERVIDOR (Ao iniciar) ---
   useEffect(() => {
-    const token = localStorage.getItem("meuToken");
-    if (!token) {
-      navigate("/admin"); 
-    } else {
-      carregarProdutos();
-    }
+    carregarAnuncios();
   }, []);
 
-  // 3. Criar produto
-  const adicionarProduto = async (e) => {
+  const carregarAnuncios = async () => {
+    try {
+      const resposta = await fetch('/api/TodoItemApi');
+      if (resposta.ok) {
+        const dados = await resposta.json();
+        setAnuncios(dados);
+      }
+    } catch (erro) {
+      console.error("Erro ao carregar:", erro);
+    }
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setNovoArtigo({ ...novoArtigo, [name]: value });
+  };
+
+  // --- 2. GRAVAR NO SERVIDOR ---
+  const publicarArtigo = async (e) => {
     e.preventDefault();
-    if (!novoProduto) return;
+    if (!novoArtigo.titulo || !novoArtigo.preco) return alert("Preenche os dados!");
 
-    const token = localStorage.getItem("meuToken");
+    // O Backend espera "Tarefa" em vez de "Titulo", fazemos a conversão aqui:
+    const payload = {
+      tarefa: novoArtigo.titulo, 
+      descricao: novoArtigo.descricao,
+      preco: parseFloat(novoArtigo.preco),
+      imagem: novoArtigo.imagem,
+      concluida: false
+    };
 
-    await fetch("http://localhost:5096/api/TodoItemApi", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}` 
-      },
-      body: JSON.stringify({
-        name: novoProduto, 
-        isComplete: false 
-      })
-    });
+    try {
+      const resposta = await fetch('/api/TodoItemApi', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
 
-    setNovoProduto(""); 
-    carregarProdutos(); 
+      if (resposta.ok) {
+        // Recarrega a lista do servidor para garantir que temos o ID correto
+        carregarAnuncios();
+        setNovoArtigo({ titulo: '', descricao: '', preco: '', imagem: '' });
+        setMostrarFormulario(false);
+      } else {
+        alert("Erro ao gravar. Verifica se estás logado ou se o servidor está a correr.");
+      }
+    } catch (erro) {
+      console.error(erro);
+    }
   };
 
-  // 4. Apagar produto
-  const apagarProduto = async (id) => {
-    if (!window.confirm("Tens a certeza que queres apagar este anúncio?")) return;
-    const token = localStorage.getItem("meuToken");
-    await fetch(`http://localhost:5096/api/TodoItemApi/${id}`, {
-      method: "DELETE",
-      headers: { "Authorization": `Bearer ${token}` }
-    });
-    carregarProdutos();
-  };
+  // --- 3. DAR LIKE REAL ---
+  const darLike = async (id) => {
+    // Primeiro verificamos localmente para feedback imediato
+    const jaDeuLike = localStorage.getItem(`like_${id}`);
+    if (jaDeuLike) return alert("Já deste like!");
 
-  // 5. Logout
-  const sair = () => {
-    localStorage.removeItem("meuToken");
-    navigate("/");
+    try {
+      const resposta = await fetch(`/api/TodoItemApi/${id}/like`, { method: 'POST' });
+      if (resposta.ok) {
+        const dados = await resposta.json();
+        // Atualiza a lista com o novo numero de likes
+        setAnuncios(anuncios.map(a => a.id === id ? { ...a, likes: dados.likes } : a));
+        localStorage.setItem(`like_${id}`, "true");
+      } else {
+        alert("Precisas de fazer login para dar like.");
+      }
+    } catch (erro) {
+      console.error(erro);
+    }
   };
 
   return (
-    <div style={{ padding: "20px", maxWidth: "800px", margin: "0 auto", fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif", backgroundColor: "#f4f7f6", minHeight: "100vh" }}>
-      {/* Cabeçalho */}
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "30px", padding: "10px 0" }}>
-        <h1 style={{ color: "#333" }}>🔧 Painel de Vendedor</h1>
-        <button onClick={sair} style={{ backgroundColor: "#dc3545", color: "white", padding: "10px 20px", border: "none", borderRadius: "25px", cursor: "pointer", fontWeight: "bold", boxShadow: "0 2px 5px rgba(0,0,0,0.2)" }}>
-          Sair
+    <div className="marketplace-container">
+      <header className="header">
+        <h1>🛒 Marketplace</h1>
+        <button className="btn-vender" onClick={() => setMostrarFormulario(true)}>
+          + Vender Artigo
         </button>
-      </div>
+      </header>
 
-      {/* === A MUDANÇA ESTÁ AQUI: CAIXA BRANCA COM SOMBRA === */}
-      <div style={{ 
-          backgroundColor: "#ffffff", // Cor branca limpa
-          padding: "25px", 
-          borderRadius: "15px", // Cantos mais redondos
-          marginBottom: "40px", 
-          boxShadow: "0 10px 25px rgba(0,0,0,0.1)" // Sombra moderna para destacar
-        }}>
-        <h3 style={{ marginTop: 0, color: "#2c3e50" }}>➕ Vender Novo Artigo</h3>
-        <form onSubmit={adicionarProduto} style={{ display: "flex", gap: "15px" }}>
-          <input 
-            type="text" 
-            placeholder="Ex: Casaco Vintage Nike (Tam M)" 
-            value={novoProduto} 
-            onChange={(e) => setNovoProduto(e.target.value)} 
-            style={{ flex: 1, padding: "12px", borderRadius: "8px", border: "2px solid #eee", fontSize: "16px" }}
-          />
-          <button type="submit" style={{ backgroundColor: "#00b894", color: "white", padding: "12px 25px", border: "none", borderRadius: "8px", cursor: "pointer", fontWeight: "bold", fontSize: "16px", transition: "background 0.3s" }}>
-            Publicar Venda
-          </button>
-        </form>
-      </div>
-      {/* =================================================== */}
-
-      {/* Tabela de Produtos */}
-      <h3 style={{ color: "#2c3e50" }}>📦 O teu stock:</h3>
-      <div style={{ backgroundColor: "white", borderRadius: "15px", overflow: "hidden", boxShadow: "0 5px 15px rgba(0,0,0,0.05)" }}>
-        {produtos.length === 0 ? (
-          <p style={{ padding: "20px", textAlign: "center", color: "#888" }}>Ainda não tens nada à venda.</p>
+      <main className="grid-anuncios">
+        {anuncios.length === 0 ? (
+          <p className="aviso-vazio">A carregar anúncios ou lista vazia...</p>
         ) : (
-          <table style={{ width: "100%", borderCollapse: "collapse" }}>
-            <thead>
-              <tr style={{ backgroundColor: "#f8f9fa", textAlign: "left", color: "#666" }}>
-                <th style={{ padding: "15px" }}>Produto</th>
-                <th style={{ padding: "15px" }}>Estado</th>
-                <th style={{ padding: "15px", textAlign: "right" }}>Ações</th>
-              </tr>
-            </thead>
-            <tbody>
-              {produtos.map((item) => (
-                <tr key={item.id} style={{ borderBottom: "1px solid #eee" }}>
-                  <td style={{ padding: "15px", fontWeight: "500" }}>{item.name}</td>
-                  <td style={{ padding: "15px" }}>
-                    <span style={{
-                      padding: "5px 12px", borderRadius: "20px", fontSize: "14px", fontWeight: "bold",
-                      backgroundColor: item.isComplete ? "#ffeaea" : "#eaffea",
-                      color: item.isComplete ? "#d63031" : "#00b894"
-                    }}>
-                      {item.isComplete ? "🔴 Vendido" : "🟢 Disponível"}
-                    </span>
-                  </td>
-                  <td style={{ padding: "15px", textAlign: "right" }}>
-                    <button 
-                      onClick={() => apagarProduto(item.id)}
-                      style={{ backgroundColor: "transparent", color: "#b2bec3", border: "1px solid #dfe6e9", padding: "8px 12px", borderRadius: "8px", cursor: "pointer", transition: "all 0.3s" }}
-                      onMouseOver={(e) => {e.target.style.color = "white"; e.target.style.backgroundColor = "#d63031"; e.target.style.border = "1px solid #d63031"}}
-                      onMouseOut={(e) => {e.target.style.color = "#b2bec3"; e.target.style.backgroundColor = "transparent"; e.target.style.border = "1px solid #dfe6e9"}}
-                    >
-                      🗑️ Apagar
+          anuncios.map((artigo) => (
+            <div key={artigo.id} className="cartao-artigo">
+              <div className="imagem-artigo">
+                {artigo.imagem ? (
+                    <img src={artigo.imagem} alt={artigo.titulo || artigo.tarefa} onError={(e) => e.target.style.display='none'} />
+                ) : <div className="sem-imagem">Sem Foto</div>}
+                <span className="tag-preco">{artigo.preco} €</span>
+              </div>
+              <div className="info-artigo">
+                <h3>{artigo.titulo || artigo.tarefa}</h3>
+                <p className="descricao">{artigo.descricao}</p>
+                <div className="stats-row">
+                    <div className="stat-item">👁️ {artigo.views}</div>
+                    <button className="btn-like" onClick={() => darLike(artigo.id)}>
+                        ❤️ {artigo.likes}
                     </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                </div>
+                <button className="btn-comprar">Comprar Agora</button>
+              </div>
+            </div>
+          ))
         )}
-      </div>
+      </main>
+
+      {mostrarFormulario && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <h2>Vender Novo Artigo</h2>
+            <form onSubmit={publicarArtigo}>
+              <label>Título:</label>
+              <input type="text" name="titulo" value={novoArtigo.titulo} onChange={handleInputChange} required />
+              
+              <label>Preço (€):</label>
+              <input type="number" name="preco" value={novoArtigo.preco} onChange={handleInputChange} required />
+              
+              <label>Descrição:</label>
+              <textarea name="descricao" value={novoArtigo.descricao} onChange={handleInputChange} />
+              
+              <label>URL da Fotografia (Link da net):</label>
+              <input type="text" name="imagem" placeholder="https://..." value={novoArtigo.imagem} onChange={handleInputChange} />
+
+              <div className="modal-actions">
+                <button type="button" onClick={() => setMostrarFormulario(false)} className="btn-cancelar">Cancelar</button>
+                <button type="submit" className="btn-confirmar">Publicar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
-
-export default Backoffice;
