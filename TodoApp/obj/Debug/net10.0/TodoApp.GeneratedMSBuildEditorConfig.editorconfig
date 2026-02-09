@@ -19,81 +19,81 @@ build_property.TargetFrameworkIdentifier = .NETCoreApp
 build_property.TargetFrameworkVersion = v10.0
 build_property.RootNamespace = TodoApp
 build_property.RootNamespace = TodoApp
-build_property.ProjectDir = F:\ipt\web\Trabalho Final\TodoApp\Interfaces_Web\TodoApp\
+build_property.ProjectDir = D:\IPT\2\Estrutura de Dados e Algoritmos\Projeto\Interfaces_Web\todoapp\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 9.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = F:\ipt\web\Trabalho Final\TodoApp\Interfaces_Web\TodoApp
+build_property.MSBuildProjectDirectory = D:\IPT\2\Estrutura de Dados e Algoritmos\Projeto\Interfaces_Web\todoapp
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 10.0
 build_property.EnableCodeStyleSeverity = 
 
-[F:/ipt/web/Trabalho Final/TodoApp/Interfaces_Web/TodoApp/Areas/Identity/Pages/Account/ConfirmEmail.cshtml]
+[D:/IPT/2/Estrutura de Dados e Algoritmos/Projeto/Interfaces_Web/todoapp/Areas/Identity/Pages/Account/ConfirmEmail.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxDb25maXJtRW1haWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ipt/web/Trabalho Final/TodoApp/Interfaces_Web/TodoApp/Areas/Identity/Pages/Account/Login.cshtml]
+[D:/IPT/2/Estrutura de Dados e Algoritmos/Projeto/Interfaces_Web/todoapp/Areas/Identity/Pages/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ipt/web/Trabalho Final/TodoApp/Interfaces_Web/TodoApp/Areas/Identity/Pages/Account/Register.cshtml]
+[D:/IPT/2/Estrutura de Dados e Algoritmos/Projeto/Interfaces_Web/todoapp/Areas/Identity/Pages/Account/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ipt/web/Trabalho Final/TodoApp/Interfaces_Web/TodoApp/Areas/Identity/Pages/Account/RegisterConfirmation.cshtml]
+[D:/IPT/2/Estrutura de Dados e Algoritmos/Projeto/Interfaces_Web/todoapp/Areas/Identity/Pages/Account/RegisterConfirmation.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZWdpc3RlckNvbmZpcm1hdGlvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ipt/web/Trabalho Final/TodoApp/Interfaces_Web/TodoApp/Areas/Identity/Pages/Account/ResetPassword.cshtml]
+[D:/IPT/2/Estrutura de Dados e Algoritmos/Projeto/Interfaces_Web/todoapp/Areas/Identity/Pages/Account/ResetPassword.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZXNldFBhc3N3b3JkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ipt/web/Trabalho Final/TodoApp/Interfaces_Web/TodoApp/Areas/Identity/Pages/Account/_ViewImports.cshtml]
+[D:/IPT/2/Estrutura de Dados e Algoritmos/Projeto/Interfaces_Web/todoapp/Areas/Identity/Pages/Account/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxfVmlld0ltcG9ydHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ipt/web/Trabalho Final/TodoApp/Interfaces_Web/TodoApp/Areas/Identity/Pages/_ValidationScriptsPartial.cshtml]
+[D:/IPT/2/Estrutura de Dados e Algoritmos/Projeto/Interfaces_Web/todoapp/Areas/Identity/Pages/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZhbGlkYXRpb25TY3JpcHRzUGFydGlhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ipt/web/Trabalho Final/TodoApp/Interfaces_Web/TodoApp/Areas/Identity/Pages/_ViewImports.cshtml]
+[D:/IPT/2/Estrutura de Dados e Algoritmos/Projeto/Interfaces_Web/todoapp/Areas/Identity/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ipt/web/Trabalho Final/TodoApp/Interfaces_Web/TodoApp/Areas/Identity/Pages/_ViewStart.cshtml]
+[D:/IPT/2/Estrutura de Dados e Algoritmos/Projeto/Interfaces_Web/todoapp/Areas/Identity/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ipt/web/Trabalho Final/TodoApp/Interfaces_Web/TodoApp/Views/Home/Index.cshtml]
+[D:/IPT/2/Estrutura de Dados e Algoritmos/Projeto/Interfaces_Web/todoapp/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ipt/web/Trabalho Final/TodoApp/Interfaces_Web/TodoApp/Views/Home/Privacy.cshtml]
+[D:/IPT/2/Estrutura de Dados e Algoritmos/Projeto/Interfaces_Web/todoapp/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ipt/web/Trabalho Final/TodoApp/Interfaces_Web/TodoApp/Views/Shared/Error.cshtml]
+[D:/IPT/2/Estrutura de Dados e Algoritmos/Projeto/Interfaces_Web/todoapp/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ipt/web/Trabalho Final/TodoApp/Interfaces_Web/TodoApp/Views/Shared/_LoginPartial.cshtml]
+[D:/IPT/2/Estrutura de Dados e Algoritmos/Projeto/Interfaces_Web/todoapp/Views/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ipt/web/Trabalho Final/TodoApp/Interfaces_Web/TodoApp/Views/Shared/_ValidationScriptsPartial.cshtml]
+[D:/IPT/2/Estrutura de Dados e Algoritmos/Projeto/Interfaces_Web/todoapp/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ipt/web/Trabalho Final/TodoApp/Interfaces_Web/TodoApp/Views/_ViewImports.cshtml]
+[D:/IPT/2/Estrutura de Dados e Algoritmos/Projeto/Interfaces_Web/todoapp/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ipt/web/Trabalho Final/TodoApp/Interfaces_Web/TodoApp/Views/_ViewStart.cshtml]
+[D:/IPT/2/Estrutura de Dados e Algoritmos/Projeto/Interfaces_Web/todoapp/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/ipt/web/Trabalho Final/TodoApp/Interfaces_Web/TodoApp/Views/Shared/_Layout.cshtml]
+[D:/IPT/2/Estrutura de Dados e Algoritmos/Projeto/Interfaces_Web/todoapp/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-yz4373aytu

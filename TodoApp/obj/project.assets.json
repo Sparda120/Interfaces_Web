@@ -6916,19 +6916,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\spard\\.nuget\\packages\\": {}
+    "C:\\Users\\Dingus\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\ipt\\web\\Trabalho Final\\TodoApp\\Interfaces_Web\\TodoApp\\TodoApp.csproj",
+      "projectUniqueName": "D:\\IPT\\2\\Estrutura de Dados e Algoritmos\\Projeto\\Interfaces_Web\\todoapp\\TodoApp.csproj",
       "projectName": "TodoApp",
-      "projectPath": "F:\\ipt\\web\\Trabalho Final\\TodoApp\\Interfaces_Web\\TodoApp\\TodoApp.csproj",
-      "packagesPath": "C:\\Users\\spard\\.nuget\\packages\\",
-      "outputPath": "F:\\ipt\\web\\Trabalho Final\\TodoApp\\Interfaces_Web\\TodoApp\\obj\\",
+      "projectPath": "D:\\IPT\\2\\Estrutura de Dados e Algoritmos\\Projeto\\Interfaces_Web\\todoapp\\TodoApp.csproj",
+      "packagesPath": "C:\\Users\\Dingus\\.nuget\\packages\\",
+      "outputPath": "D:\\IPT\\2\\Estrutura de Dados e Algoritmos\\Projeto\\Interfaces_Web\\todoapp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\spard\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Dingus\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net10.0"
