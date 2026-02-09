@@ -1,92 +1,91 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css'; 
 
 export default function Marketplace() {
-  // Lista inicial (podes deixar vazia se preferires)
-  const [anuncios, setAnuncios] = useState([
-    {
-        id: 1,
-        titulo: "Ténis Nike",
-        preco: "50",
-        descricao: "Novos, nunca usados.",
-        imagem: null, // Podes por um URL real aqui para testar
-        likes: 12,
-        views: 340
-    }
-  ]);
-  
+  const [anuncios, setAnuncios] = useState([]); // Começa vazio, vai buscar à BD
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
-
   const [novoArtigo, setNovoArtigo] = useState({
     titulo: '',
     descricao: '',
     preco: '',
-    imagem: null
+    imagem: '' // Agora é uma string (URL)
   });
+
+  // --- 1. CARREGAR DADOS DO SERVIDOR (Ao iniciar) ---
+  useEffect(() => {
+    carregarAnuncios();
+  }, []);
+
+  const carregarAnuncios = async () => {
+    try {
+      const resposta = await fetch('/api/TodoItemApi');
+      if (resposta.ok) {
+        const dados = await resposta.json();
+        setAnuncios(dados);
+      }
+    } catch (erro) {
+      console.error("Erro ao carregar:", erro);
+    }
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setNovoArtigo({ ...novoArtigo, [name]: value });
   };
 
-  const handleImageChange = (e) => {
-    if (e.target.files && e.target.files[0]) {
-      setNovoArtigo({ ...novoArtigo, imagem: URL.createObjectURL(e.target.files[0]) });
-    }
-  };
-
-  const publicarArtigo = (e) => {
+  // --- 2. GRAVAR NO SERVIDOR ---
+  const publicarArtigo = async (e) => {
     e.preventDefault();
     if (!novoArtigo.titulo || !novoArtigo.preco) return alert("Preenche os dados!");
 
-    setAnuncios([
-      ...anuncios, 
-      { 
-        ...novoArtigo, 
-        id: Date.now(),
-        likes: 0,   // Começa com 0 likes
-        views: 0    // Começa com 0 visualizações
+    // O Backend espera "Tarefa" em vez de "Titulo", fazemos a conversão aqui:
+    const payload = {
+      tarefa: novoArtigo.titulo, 
+      descricao: novoArtigo.descricao,
+      preco: parseFloat(novoArtigo.preco),
+      imagem: novoArtigo.imagem,
+      concluida: false
+    };
+
+    try {
+      const resposta = await fetch('/api/TodoItemApi', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      if (resposta.ok) {
+        // Recarrega a lista do servidor para garantir que temos o ID correto
+        carregarAnuncios();
+        setNovoArtigo({ titulo: '', descricao: '', preco: '', imagem: '' });
+        setMostrarFormulario(false);
+      } else {
+        alert("Erro ao gravar. Verifica se estás logado ou se o servidor está a correr.");
       }
-    ]);
-    
-    setNovoArtigo({ titulo: '', descricao: '', preco: '', imagem: null });
-    setMostrarFormulario(false);
+    } catch (erro) {
+      console.error(erro);
+    }
   };
 
-  // Função para dar Like
-  // Função para dar Like (apenas 1 por pessoa)
-  const darLike = (id) => {
-    // 1. Verifica na memória do navegador se já existe um registo de like para este ID
-    const jaDeuLike = localStorage.getItem(`like_no_artigo_${id}`);
+  // --- 3. DAR LIKE REAL ---
+  const darLike = async (id) => {
+    // Primeiro verificamos localmente para feedback imediato
+    const jaDeuLike = localStorage.getItem(`like_${id}`);
+    if (jaDeuLike) return alert("Já deste like!");
 
-    if (jaDeuLike) {
-      // Se já deu like, avisa e não faz nada
-      alert("Já gostaste deste artigo! Só podes dar 1 like.");
-      return; 
+    try {
+      const resposta = await fetch(`/api/TodoItemApi/${id}/like`, { method: 'POST' });
+      if (resposta.ok) {
+        const dados = await resposta.json();
+        // Atualiza a lista com o novo numero de likes
+        setAnuncios(anuncios.map(a => a.id === id ? { ...a, likes: dados.likes } : a));
+        localStorage.setItem(`like_${id}`, "true");
+      } else {
+        alert("Precisas de fazer login para dar like.");
+      }
+    } catch (erro) {
+      console.error(erro);
     }
-
-    // 2. Se não deu like, atualiza o estado visualmente
-    const novosAnuncios = anuncios.map(artigo => 
-      artigo.id === id ? { ...artigo, likes: artigo.likes + 1 } : artigo
-    );
-    setAnuncios(novosAnuncios);
-
-    // 3. Grava na memória do navegador que esta pessoa JÁ DEU like neste artigo
-    localStorage.setItem(`like_no_artigo_${id}`, "true");
-
-    // NOTA: Aqui seria o local onde chamarias o teu Backend para salvar na base de dados
-    // salvarLikeNoServidor(id); 
-    // Função para contar visualização
-  const verDetalhes = (id) => {
-     // Atualiza visualmente
-     const novosAnuncios = anuncios.map(artigo => 
-      artigo.id === id ? { ...artigo, views: artigo.views + 1 } : artigo
-    );
-    setAnuncios(novosAnuncios);
-    
-    // AQUI tens de enviar para o servidor, senão ninguém mais vê que o número subiu.
-    // fetch('http://teu-servidor/api/artigos/' + id + '/view', { method: 'POST' }) ...
-  }
   };
 
   return (
@@ -100,34 +99,25 @@ export default function Marketplace() {
 
       <main className="grid-anuncios">
         {anuncios.length === 0 ? (
-          <p className="aviso-vazio">Ainda não há artigos à venda.</p>
+          <p className="aviso-vazio">A carregar anúncios ou lista vazia...</p>
         ) : (
           anuncios.map((artigo) => (
             <div key={artigo.id} className="cartao-artigo">
               <div className="imagem-artigo">
-                {artigo.imagem ? <img src={artigo.imagem} alt={artigo.titulo} /> : <div className="sem-imagem">Sem Foto</div>}
-                
-                {/* Etiqueta de Preço flutuante (opcional, fica giro) */}
+                {artigo.imagem ? (
+                    <img src={artigo.imagem} alt={artigo.titulo || artigo.tarefa} onError={(e) => e.target.style.display='none'} />
+                ) : <div className="sem-imagem">Sem Foto</div>}
                 <span className="tag-preco">{artigo.preco} €</span>
               </div>
-              
               <div className="info-artigo">
-                <div className="titulo-row">
-                    <h3>{artigo.titulo}</h3>
-                </div>
-                
+                <h3>{artigo.titulo || artigo.tarefa}</h3>
                 <p className="descricao">{artigo.descricao}</p>
-                
-                {/* --- AQUI ESTÃO OS LIKES E VIEWS --- */}
                 <div className="stats-row">
-                    <div className="stat-item">
-                        👁️ {artigo.views}
-                    </div>
+                    <div className="stat-item">👁️ {artigo.views}</div>
                     <button className="btn-like" onClick={() => darLike(artigo.id)}>
                         ❤️ {artigo.likes}
                     </button>
                 </div>
-
                 <button className="btn-comprar">Comprar Agora</button>
               </div>
             </div>
@@ -135,7 +125,6 @@ export default function Marketplace() {
         )}
       </main>
 
-      {/* O FORMULÁRIO MANTÉM-SE IGUAL AO ANTERIOR... */}
       {mostrarFormulario && (
         <div className="modal-overlay">
           <div className="modal-content">
@@ -150,8 +139,8 @@ export default function Marketplace() {
               <label>Descrição:</label>
               <textarea name="descricao" value={novoArtigo.descricao} onChange={handleInputChange} />
               
-              <label>Fotografia:</label>
-              <input type="file" onChange={handleImageChange} />
+              <label>URL da Fotografia (Link da net):</label>
+              <input type="text" name="imagem" placeholder="https://..." value={novoArtigo.imagem} onChange={handleInputChange} />
 
               <div className="modal-actions">
                 <button type="button" onClick={() => setMostrarFormulario(false)} className="btn-cancelar">Cancelar</button>
