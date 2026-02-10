@@ -6,7 +6,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TodoApp.Data;
-using TodoApp.Models.DbModels;
+using TodoApp.Models;
+
 
 namespace TodoApp.Controllers.api
 {
