@@ -62,7 +62,7 @@ namespace TodoApp.Controllers.api
         // POST: api/TodoItemApi/5/like
         // Dá 1 Like (Requer Login e verifica duplicados)
         [HttpPost("{id}/like")]
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> LikeItem(int id)
         {
             var user = User.Identity.Name; // O nome do utilizador logado
