@@ -414,7 +414,6 @@ F:\ipt\web\Trabalho Final\TodoApp\Interfaces_Web\TodoApp\obj\Debug\net10.0\TodoA
 F:\ipt\web\Trabalho Final\TodoApp\Interfaces_Web\TodoApp\obj\Debug\net10.0\ref\TodoApp.dll
 D:\IPT\2\Estrutura de Dados e Algoritmos\Projeto\Interfaces_Web\todoapp\bin\Debug\net10.0\appsettings.Development.json
 D:\IPT\2\Estrutura de Dados e Algoritmos\Projeto\Interfaces_Web\todoapp\bin\Debug\net10.0\appsettings.json
-D:\IPT\2\Estrutura de Dados e Algoritmos\Projeto\Interfaces_Web\todoapp\bin\Debug\net10.0\app.db
 D:\IPT\2\Estrutura de Dados e Algoritmos\Projeto\Interfaces_Web\todoapp\bin\Debug\net10.0\package-lock.json
 D:\IPT\2\Estrutura de Dados e Algoritmos\Projeto\Interfaces_Web\todoapp\bin\Debug\net10.0\TodoApp.staticwebassets.runtime.json
 D:\IPT\2\Estrutura de Dados e Algoritmos\Projeto\Interfaces_Web\todoapp\bin\Debug\net10.0\TodoApp.staticwebassets.endpoints.json
@@ -827,3 +826,4 @@ D:\IPT\2\Estrutura de Dados e Algoritmos\Projeto\Interfaces_Web\todoapp\obj\Debu
 D:\IPT\2\Estrutura de Dados e Algoritmos\Projeto\Interfaces_Web\todoapp\obj\Debug\net10.0\TodoApp.pdb
 D:\IPT\2\Estrutura de Dados e Algoritmos\Projeto\Interfaces_Web\todoapp\obj\Debug\net10.0\TodoApp.genruntimeconfig.cache
 D:\IPT\2\Estrutura de Dados e Algoritmos\Projeto\Interfaces_Web\todoapp\obj\Debug\net10.0\ref\TodoApp.dll
+D:\IPT\2\Estrutura de Dados e Algoritmos\Projeto\Interfaces_Web\todoapp\bin\Debug\net10.0\app.db
