@@ -3,7 +3,7 @@ import './App.css';
 
 /**
  * Componente Principal: Marketplace
- * Inclui agora PAGINAÇÃO completa.
+ * Inclui agora EDIÇÃO DE PERFIL.
  */
 export default function Marketplace() {
   
@@ -14,30 +14,32 @@ export default function Marketplace() {
   const [loginForm, setLoginForm] = useState({ username: '', password: '' });
   const [darkMode, setDarkMode] = useState(() => localStorage.getItem('theme') === 'dark');
 
-  // --- ESTADOS DE PAGINAÇÃO (NOVO) ---
+  // --- ESTADOS DE PAGINAÇÃO ---
   const [paginaAtual, setPaginaAtual] = useState(1);
-  const [itensPorPagina] = useState(8); // Mostra 8 artigos por página
+  const [itensPorPagina] = useState(8); 
 
   // --- MODAIS ---
-  const [mostrarModal, setMostrarModal] = useState(false);
-  const [mostrarDetalhes, setMostrarDetalhes] = useState(false);
+  const [mostrarModal, setMostrarModal] = useState(false);     // Criar/Editar Anúncio
+  const [mostrarDetalhes, setMostrarDetalhes] = useState(false); // Detalhes Anúncio
+  const [mostrarPerfil, setMostrarPerfil] = useState(false);     // <--- NOVO: Modal de Perfil
+  
   const [modoEdicao, setModoEdicao] = useState(false);
   
   // --- DADOS TEMPORÁRIOS ---
   const [dadosArtigo, setDadosArtigo] = useState({ id: 0, titulo: '', descricao: '', preco: '', imagem: '' });
   const [artigoSelecionado, setArtigoSelecionado] = useState(null);
   const [novoComentario, setNovoComentario] = useState("");
+  
+  // Dados do formulário de Perfil
+  const [perfilForm, setPerfilForm] = useState({ username: '', password: '' });
 
   // --- EFEITOS ---
-
-  // 1. Carregar Login e Dados
   useEffect(() => {
     const userGuardado = localStorage.getItem('marketplace_user');
     if (userGuardado) setUser(JSON.parse(userGuardado));
     carregarAnuncios();
   }, []);
 
-  // 2. Dark Mode
   useEffect(() => {
     if (darkMode) {
       document.body.classList.add('dark-mode');
@@ -48,30 +50,14 @@ export default function Marketplace() {
     }
   }, [darkMode]);
 
-  // 3. (IMPORTANTE) Reset da página ao pesquisar
-  // Se o user escrever na pesquisa, voltamos à página 1 para evitar erros
-  useEffect(() => {
-    setPaginaAtual(1);
-  }, [termoPesquisa]);
+  useEffect(() => { setPaginaAtual(1); }, [termoPesquisa]);
 
-  // --- LÓGICA DE PAGINAÇÃO (MATEMÁTICA) ---
-  
-  // 1. Filtra primeiro (Search)
-  const anunciosFiltrados = anuncios.filter(a => 
-    (a.titulo || "").toLowerCase().includes(termoPesquisa.toLowerCase())
-  );
-
-  // 2. Calcula índices para "fatiar" a lista
+  // --- PAGINAÇÃO ---
+  const anunciosFiltrados = anuncios.filter(a => (a.titulo || "").toLowerCase().includes(termoPesquisa.toLowerCase()));
   const indexUltimoItem = paginaAtual * itensPorPagina;
   const indexPrimeiroItem = indexUltimoItem - itensPorPagina;
-  
-  // 3. Obtém apenas os artigos da página atual
   const anunciosPaginados = anunciosFiltrados.slice(indexPrimeiroItem, indexUltimoItem);
-
-  // 4. Calcula quantas páginas existem no total
   const totalPaginas = Math.ceil(anunciosFiltrados.length / itensPorPagina);
-
-  // Mudar de página
   const mudarPagina = (numero) => setPaginaAtual(numero);
 
   // --- FUNÇÕES API ---
@@ -104,12 +90,9 @@ export default function Marketplace() {
     e.preventDefault();
     const payload = {
       id: modoEdicao ? dadosArtigo.id : 0,
-      tarefa: dadosArtigo.titulo, 
-      descricao: dadosArtigo.descricao,
-      preco: parseFloat(dadosArtigo.preco), 
-      imagem: dadosArtigo.imagem,
-      concluida: false, 
-      userCriacao: user.username
+      tarefa: dadosArtigo.titulo, descricao: dadosArtigo.descricao,
+      preco: parseFloat(dadosArtigo.preco), imagem: dadosArtigo.imagem,
+      concluida: false, userCriacao: user.username
     };
     const url = modoEdicao ? `/api/TodoItemApi/${dadosArtigo.id}` : '/api/TodoItemApi';
     const metodo = modoEdicao ? 'PUT' : 'POST';
@@ -122,7 +105,6 @@ export default function Marketplace() {
   const darLike = async (id) => {
     if (!user) return;
     if (user.role === 'visitor') return alert("O modo visitante apenas permite ver!");
-
     const key = `like_${id}_${user.username}`;
     if (localStorage.getItem(key)) return alert("Já gostaste deste artigo!");
     
@@ -141,7 +123,7 @@ export default function Marketplace() {
     }
   };
 
-  // --- UTILITÁRIOS ---
+  // --- GESTÃO DE UTILIZADOR ---
   const handleLogin = (e) => {
     e.preventDefault();
     if (!loginForm.username || !loginForm.password) return alert("Preenche os dados.");
@@ -151,10 +133,31 @@ export default function Marketplace() {
     localStorage.setItem('marketplace_user', JSON.stringify(userData));
   };
 
-  const handleVisitante = () => {
-    setUser({ username: 'Visitante', role: 'visitor' });
+  const handleVisitante = () => { setUser({ username: 'Visitante', role: 'visitor' }); };
+
+  // --- NOVA FUNÇÃO: EDITAR PERFIL ---
+  const abrirPerfil = () => {
+    // Preenche o formulário com os dados atuais
+    setPerfilForm({ username: user.username, password: '' });
+    setMostrarPerfil(true);
   };
 
+  const guardarPerfil = (e) => {
+    e.preventDefault();
+    if (!perfilForm.username) return alert("O nome não pode ser vazio!");
+
+    // Cria o novo objeto de utilizador mantendo a role (admin/user)
+    const novoUser = { ...user, username: perfilForm.username };
+    
+    // Atualiza o estado e a memória do browser
+    setUser(novoUser);
+    localStorage.setItem('marketplace_user', JSON.stringify(novoUser));
+    
+    setMostrarPerfil(false);
+    alert("Perfil atualizado com sucesso!");
+  };
+
+  // --- OUTROS ---
   const converterImagem = (e) => {
     const file = e.target.files[0];
     if(file) {
@@ -199,14 +202,21 @@ export default function Marketplace() {
         <input className="search-bar" placeholder="🔍 Pesquisar..." value={termoPesquisa} onChange={e => setTermoPesquisa(e.target.value)} />
         <div className="user-menu">
           <button onClick={() => setDarkMode(!darkMode)} style={{background:'none', border:'none', fontSize:'1.2rem'}}>{darkMode ? '☀️' : '🌙'}</button>
+          
           <span style={{fontWeight:'bold'}}>{user.username}</span>
+
+          {/* BOTÃO PERFIL (NOVO) */}
+          {user.role !== 'visitor' && (
+             <button onClick={abrirPerfil} style={{background:'none', border:'none', cursor:'pointer', fontSize:'1.2rem'}} title="Editar Perfil">👤</button>
+          )}
+
           {user.role === 'admin' && <button className="btn-primary" onClick={() => { setModoEdicao(false); setDadosArtigo({}); setMostrarModal(true); }}>+ Novo</button>}
+          
           <button className="btn-logout" onClick={() => {setUser(null); localStorage.removeItem('marketplace_user');}}>Sair</button>
         </div>
       </header>
 
       <main className="content">
-        {/* Mostramos a lista FATIADA (anunciosPaginados) em vez da lista toda */}
         <div className="grid-anuncios">
           {anunciosPaginados.length > 0 ? (
             anunciosPaginados.map((artigo) => (
@@ -233,46 +243,54 @@ export default function Marketplace() {
               </div>
             ))
           ) : (
-            <p style={{gridColumn:'1/-1', textAlign:'center', marginTop:'50px', color:'var(--text-sec)'}}>
-                Nenhum artigo encontrado...
-            </p>
+            <p style={{gridColumn:'1/-1', textAlign:'center', marginTop:'50px', color:'var(--text-sec)'}}>Nenhum artigo encontrado...</p>
           )}
         </div>
 
-        {/* --- PAGINAÇÃO (NOVO) --- */}
+        {/* PAGINAÇÃO */}
         {totalPaginas > 1 && (
             <div className="pagination-container">
-                <button 
-                    disabled={paginaAtual === 1} 
-                    onClick={() => mudarPagina(paginaAtual - 1)}
-                    className="page-btn"
-                >
-                    &laquo; Anterior
-                </button>
-
-                {/* Gera os números das páginas dinamicamente */}
+                <button disabled={paginaAtual === 1} onClick={() => mudarPagina(paginaAtual - 1)} className="page-btn">&laquo; Anterior</button>
                 {[...Array(totalPaginas)].map((_, i) => (
-                    <button 
-                        key={i + 1}
-                        onClick={() => mudarPagina(i + 1)}
-                        className={`page-btn ${paginaAtual === i + 1 ? 'active' : ''}`}
-                    >
-                        {i + 1}
-                    </button>
+                    <button key={i + 1} onClick={() => mudarPagina(i + 1)} className={`page-btn ${paginaAtual === i + 1 ? 'active' : ''}`}>{i + 1}</button>
                 ))}
-
-                <button 
-                    disabled={paginaAtual === totalPaginas} 
-                    onClick={() => mudarPagina(paginaAtual + 1)}
-                    className="page-btn"
-                >
-                    Próximo &raquo;
-                </button>
+                <button disabled={paginaAtual === totalPaginas} onClick={() => mudarPagina(paginaAtual + 1)} className="page-btn">Próximo &raquo;</button>
             </div>
         )}
       </main>
 
-      {/* MODAL DETALHES (Mantém igual) */}
+      {/* --- MODAL DE PERFIL (NOVO) --- */}
+      {mostrarPerfil && (
+        <div className="modal-overlay">
+          <div className="modal-content" style={{maxWidth:'400px'}}>
+            <h2>Editar Perfil</h2>
+            <form onSubmit={guardarPerfil}>
+              <label>Novo Nome de Utilizador:</label>
+              <input 
+                type="text" 
+                value={perfilForm.username} 
+                onChange={e => setPerfilForm({...perfilForm, username: e.target.value})} 
+                required 
+              />
+              
+              <label>Nova Password:</label>
+              <input 
+                type="password" 
+                placeholder="(Opcional) Digita para mudar"
+                value={perfilForm.password} 
+                onChange={e => setPerfilForm({...perfilForm, password: e.target.value})} 
+              />
+              
+              <div style={{display:'flex', justifyContent:'flex-end', gap:'10px', marginTop:'15px'}}>
+                <button type="button" onClick={() => setMostrarPerfil(false)} style={{background:'transparent', color:'var(--text-sec)', border:'none'}}>Cancelar</button>
+                <button className="btn-primary">Atualizar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* OUTROS MODAIS (Mantém igual) */}
       {mostrarDetalhes && artigoSelecionado && (
         <div className="modal-overlay" onClick={() => setMostrarDetalhes(false)}>
           <div className="modal-content" onClick={e => e.stopPropagation()}>
@@ -292,9 +310,7 @@ export default function Marketplace() {
                ) : <p style={{color:'var(--text-sec)', padding:'10px'}}>Ainda sem comentários.</p>}
              </div>
              {user.role === 'visitor' ? (
-                <div style={{textAlign:'center', padding:'10px', color:'var(--text-sec)', background:'var(--bg-body)', borderRadius:'8px'}}>
-                    🔒 <b>Faz login</b> para comentar!
-                </div>
+                <div style={{textAlign:'center', padding:'10px', color:'var(--text-sec)', background:'var(--bg-body)', borderRadius:'8px'}}>🔒 <b>Faz login</b> para comentar!</div>
              ) : (
                 <form onSubmit={enviarComentario} style={{display:'flex', gap:'10px'}}>
                     <input value={novoComentario} onChange={e=>setNovoComentario(e.target.value)} placeholder="Escreve algo..." required />
@@ -305,7 +321,6 @@ export default function Marketplace() {
         </div>
       )}
 
-      {/* MODAL CRIAR/EDITAR (Mantém igual) */}
       {mostrarModal && (
         <div className="modal-overlay">
           <div className="modal-content">
